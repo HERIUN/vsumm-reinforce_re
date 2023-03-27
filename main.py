@@ -6,7 +6,7 @@ import sys
 import h5py
 import time
 import datetime
-import numpy as np
+# import numpy as np
 from tabulate import tabulate
 
 import torch
