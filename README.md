@@ -2,6 +2,9 @@
 This repo contains the Pytorch implementation of the AAAI'18 paper - Deep Reinforcement Learning for Unsupervised Video
 Summarization with Diversity-Representativeness Reward.
 
+
+1. 
+
 The repo contains 2 files.
 1) training.ipynb
 2) testing.ipynb

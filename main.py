@@ -6,8 +6,8 @@ import sys
 import h5py
 import time
 import datetime
-# import numpy as np
-# from tabulate import tabulate
+import numpy as np
+from tabulate import tabulate
 
 import torch
 import torch.nn as nn
@@ -176,12 +176,12 @@ def evaluate(model, dataset, test_keys, use_gpu):
             probs = probs.data.cpu().squeeze().numpy()
 
             cps = dataset[key]['change_points'][...]
-            num_frames = dataset[key]['n_frames'][()]
-            nfps = dataset[key]['n_frame_per_seg'][...].tolist()
-            positions = dataset[key]['picks'][...]
+            n_frames = dataset[key]['n_frames'][()]
+            n_frame_per_seg = dataset[key]['n_frame_per_seg'][...].tolist()
+            picks = dataset[key]['picks'][...]
             user_summary = dataset[key]['user_summary'][...]
 
-            machine_summary = vsum_tools.generate_summary(probs, cps, num_frames, nfps, positions)
+            machine_summary = vsum_tools.generate_summary(probs, cps, n_frames, n_frame_per_seg, picks)
             fm, _, _ = vsum_tools.evaluate_summary(machine_summary, user_summary, eval_metric)
             fms.append(fm)
 

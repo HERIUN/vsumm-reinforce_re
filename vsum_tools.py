@@ -2,26 +2,28 @@ import numpy as np
 from knapsack import knapsack_dp
 import math
 
-def generate_summary(ypred, cps, n_frames, nfps, positions, proportion=0.15, method='knapsack'):
+
+
+def generate_summary(ypred, cps, n_frames, n_frame_per_seg, picks, proportion=0.15, method='knapsack'):
     """Generate keyshot-based video summary i.e. a binary vector.
     Args:
     ---------------------------------------------
     - ypred: predicted importance scores.
     - cps: change points, 2D matrix, each row contains a segment.
     - n_frames: original number of frames.
-    - nfps: number of frames per segment.
-    - positions: positions of subsampled frames in the original video.
+    - n_frame_per_seg: number of frames per segment.
+    - picks: picks of subsampled frames in the original video.
     - proportion: length of video summary (compared to original video length).
     - method: defines how shots are selected, ['knapsack', 'rank'].
     """
     n_segs = cps.shape[0]
     frame_scores = np.zeros((n_frames), dtype=np.float32)
-    if positions.dtype != int:
-        positions = positions.astype(np.int32)
-    if positions[-1] != n_frames:
-        positions = np.concatenate([positions, [n_frames]])
-    for i in range(len(positions) - 1):
-        pos_left, pos_right = positions[i], positions[i+1]
+    if picks.dtype != int:
+        picks = picks.astype(np.int32)
+    if picks[-1] != n_frames-1:
+        picks = np.concatenate([picks, [n_frames]])
+    for i in range(len(picks) - 1):
+        pos_left, pos_right = picks[i], picks[i+1]
         if i == len(ypred):
             frame_scores[pos_left:pos_right] = 0
         else:
@@ -36,21 +38,21 @@ def generate_summary(ypred, cps, n_frames, nfps, positions, proportion=0.15, met
     limits = int(math.floor(n_frames * proportion))
 
     if method == 'knapsack':
-        picks = knapsack_dp(seg_score, nfps, n_segs, limits)
+        picks = knapsack_dp(seg_score, n_frame_per_seg, n_segs, limits)
     elif method == 'rank':
         order = np.argsort(seg_score)[::-1].tolist()
         picks = []
         total_len = 0
         for i in order:
-            if total_len + nfps[i] < limits:
+            if total_len + n_frame_per_seg[i] < limits:
                 picks.append(i)
-                total_len += nfps[i]
+                total_len += n_frame_per_seg[i]
     else:
         raise KeyError("Unknown method {}".format(method))
 
     summary = np.zeros((1), dtype=np.float32) # this element should be deleted
     for seg_idx in range(n_segs):
-        nf = nfps[seg_idx]
+        nf = n_frame_per_seg[seg_idx]
         if seg_idx in picks:
             tmp = np.ones((nf), dtype=np.float32)
         else:

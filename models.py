@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-from torch.nn import functional as F
 
 __all__ = ['DSN']
 
@@ -17,6 +16,5 @@ class DSN(nn.Module):
 
     def forward(self, x):
         h, _ = self.rnn(x)
-        p = F.sigmoid(self.fc(h))
-        # p = torch.sigmoid(self.fc(h))
+        p = torch.sigmoid(self.fc(h))
         return p
