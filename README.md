@@ -3,18 +3,12 @@ This repo contains the Pytorch implementation of the AAAI'18 paper - Deep Reinfo
 Summarization with Diversity-Representativeness Reward.
 
 
-1. 
-
-The repo contains 2 files.
-1) training.ipynb
-2) testing.ipynb
-
-Please assign the path of training data set to the variable 'input_videos_folder' in training.py.The program will preprocess the data and 
-will generate model.
-
-Please assign the path of testing data set to the variable 'input_videos_folder' in testing.py and provide path of the model generated during training.The summary will be generated in a separate folder 'summary_videos'.
-
-For more details contact me:  anaghazac@gmail.com
+1. The original repo is deprecated. I reinplement it(~ing)
+This code contains 
+1) generate_h5_google_summe.py : making h5 file from original summe dataset
+2) generate_dataset.py :  making h5 from video(.mp4)
+3) main.py : train DSN by h5 file
+4) inference.py : making summarization video from custom video(not perfect)
 
 Reference Repo
 

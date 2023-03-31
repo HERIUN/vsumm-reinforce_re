@@ -20,7 +20,7 @@ import vsum_tools
 parser = argparse.ArgumentParser("Pytorch code for unsupervised video summarization with REINFORCE")
 # Dataset options
 parser.add_argument('-s', '--source', type=str, default='', help="path to your custom video file") 
-parser.add_argument('-d', '--dataset', type=str, default='', help="path to h5 dataset")
+parser.add_argument('-d', '--dataset', type=str, default='', help="path to h5 dataset(optional)")
 
 # Model options
 parser.add_argument('--input-dim', type=int, default=1024, help="input dimension (default: 1024)")
