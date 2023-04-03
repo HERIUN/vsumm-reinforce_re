@@ -1,11 +1,13 @@
 # video_summary_generaton
-This repo contains the Pytorch implementation of the AAAI'18 paper - Deep Reinforcement Learning for Unsupervised Video
-Summarization with Diversity-Representativeness Reward.
+This repo contains the Pytorch implementation of the AAAI'18 paper - [Deep Reinforcement Learning for Unsupervised Video Summarization with Diversity-Representativeness Reward Summarization with Diversity-Representativeness Reward](https://arxiv.org/abs/1801.00054).
 
+<div align="center">
+  <img src="imgs/pipeline.jpg" alt="train" width="80%">
+</div>
 
-1. The original repo is deprecated. I reinplement it(~ing)
+1. The original repo is deprecated. re implement because some issues.
 This code contains 
-1) generate_h5_google_summe.py : making h5 file from original summe dataset
+1) generate_h5_google_summe.py : making h5 file from original summe dataset : [my pytorch google net dataset](https://drive.google.com/file/d/1bOl551l-rsZ3A_LXjXz0b0rkNV05hBGk/view?usp=sharing)
 2) generate_dataset.py :  making h5 from video(.mp4)
 3) main.py : train DSN by h5 file
 4) inference.py : making summarization video from custom video(not perfect)
