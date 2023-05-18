@@ -15,6 +15,11 @@ from KTS import cpd_auto
 parser = argparse.ArgumentParser("Pytorch code for unsupervised video summarization with REINFORCE")
 # Dataset options
 
+"""
+convert video files (.json) to h5 file format
+"""
+
+
 parser.add_argument('--input', '--split', type=str, required=True, help="input videos path or video file ex. ./video_folder/ or ./video.mp4")
 parser.add_argument('--output', type=str, default=None, help="output h5 data ex")
 
