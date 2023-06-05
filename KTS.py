@@ -196,5 +196,4 @@ if __name__ == '__main__':
     d = 3 # dimension of data
     X, cps_gt = gen_data(n,m,d=d)
     K = np.dot(X, X.T) # make Gram matrix A
-    # K = np.arange(0,64).reshape(8,8)
     cps, socres = cpd_auto(K, m, 1)

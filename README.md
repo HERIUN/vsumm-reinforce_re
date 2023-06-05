@@ -5,12 +5,24 @@ This repo contains the Pytorch implementation of the AAAI'18 paper - [Deep Reinf
   <img src="imgs/pipeline.jpg" alt="train" width="80%">
 </div>
 
-1. The original repo is deprecated. re implement because some issues.
+1. original repo is deprecated. re implement because some issues.
+
 This code contains 
-1) generate_h5_google_summe.py : making h5 file from original summe dataset : [my pytorch google net dataset](https://drive.google.com/file/d/1bOl551l-rsZ3A_LXjXz0b0rkNV05hBGk/view?usp=sharing)
+1) generate_h5_summe.py : making h5 file from original summe dataset : [my pytorch google net dataset](https://drive.google.com/file/d/1bOl551l-rsZ3A_LXjXz0b0rkNV05hBGk/view?usp=sharing)
+1-1) generate_h5_tvsum.py : making h5 file from original tvsum dataset : [my pytorch google net dataset](https://drive.google.com/file/d/1ZWwJJpnhuE02Nao5dz0lXjvmcWBZkYs_/view?usp=sharing)
 2) generate_dataset.py :  making h5 from video(.mp4)
-3) main.py : train DSN by h5 file
-4) inference.py : making summarization video from custom video(not perfect)
+3) create_split.py : split train,test videos
+4) main.py : train DSN by h5 file
+```
+python main.py --dataset ~.h5 --split 
+```
+5) inference.py : making summarization video from custom video(not perfect)
+
+If you want original video data.
+
+[tvsum](http://people.csail.mit.edu/yalesong/tvsum/)
+
+[summe](https://data.vision.ee.ethz.ch/cvl/SumMe/SumMe.zip)
 
 Reference Repo
 
